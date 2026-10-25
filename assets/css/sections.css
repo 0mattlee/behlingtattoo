@@ -16,6 +16,13 @@
 
 .notebook { display: grid; gap: clamp(36px, 5vw, 64px) clamp(24px, 3vw, 44px); }
 .notebook--one { max-width: 420px; }
+/* Celular: duas colunas, com a segunda levemente deslocada (caderno de artista) */
+@media (max-width: 639px) {
+  .notebook--two, .notebook--many { grid-template-columns: repeat(2, 1fr); gap: 30px 14px; }
+  .notebook--two .leaf:nth-child(even), .notebook--many .leaf:nth-child(even) { margin-top: 30px; }
+  .leaf__mat { padding: 8px; }
+  .leaf__label { font-size: 0.62rem; letter-spacing: 0.16em; }
+}
 @media (min-width: 640px) {
   .notebook--two, .notebook--many { grid-template-columns: repeat(2, 1fr); }
   .notebook--two { max-width: 820px; }
@@ -140,6 +147,6 @@
   border: 1px solid var(--line);
 }
 .leaf__ph svg { opacity: 0.45; }
-@media (max-width: 639px) {
-  .notebook--ph .leaf:nth-child(n + 2) { display: none; } /* no celular, só uma moldura */
+@media (min-width: 1024px) {
+  .notebook--ph .leaf:nth-child(4) { display: none; } /* no desktop, 3 molduras */
 }

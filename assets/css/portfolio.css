@@ -124,6 +124,14 @@
   .slide__title { font-size: 1.3rem; }
   .carousel__controls { gap: 8px; }
 }
+/* Celular com 3+ imagens (ou molduras reservadas): a anterior e a seguinte
+   aparecem pela metade nas laterais, mostrando que há mais para deslizar. */
+@media (max-width: 899px) {
+  .carousel[data-peeks='true'] { --slide-w: min(66vw, 300px); --shift: calc(var(--slide-w) * 0.9); }
+  .carousel[data-peeks='true'] .slide[data-pos='prev'] { transform: translateX(calc(0px - var(--shift))) scale(0.84); opacity: 0.5; pointer-events: auto; }
+  .carousel[data-peeks='true'] .slide[data-pos='next'] { transform: translateX(calc(0px + var(--shift))) scale(0.84); opacity: 0.5; pointer-events: auto; }
+  .carousel--placeholder .slide { pointer-events: none; }
+}
 
 /* ---------- Destaque único (1 imagem) ---------- */
 .feature { display: flex; flex-direction: column; align-items: center; }

@@ -55,7 +55,8 @@ window.Behling.BookingSection = (function () {
         '<p class="form__privacy">Privacidade: este formulário não envia nem guarda nada neste site. Os dados ficam no seu navegador e só seguem adiante se você escolher enviar a mensagem.' +
           (B.contact.privacyUrl() ? ' <a href="' + esc(B.contact.privacyUrl()) + '" target="_blank" rel="noopener noreferrer">Política de privacidade</a>.' : '') +
         '</p>' +
-        '<button class="btn btn--solid form__submit" type="submit">Revisar mensagem</button>' +
+        '<button class="btn btn--solid form__submit" type="submit" disabled aria-describedby="consent-hint">Revisar mensagem</button>' +
+        '<p class="form__hint" id="consent-hint">Marque a caixa de concordância acima para liberar o botão.</p>' +
       '</form>'
     );
   }
@@ -244,8 +245,17 @@ window.Behling.BookingSection = (function () {
       var name = e.target.name;
       if (name && dom.qs('#e-' + name, form) && !dom.qs('#e-' + name, form).hidden) setError(name);
     });
+    // O botão "Revisar mensagem" só fica clicável com a concordância marcada
+    var submitBtn = dom.qs('.form__submit', form);
+    var consentHint = dom.qs('#consent-hint', form);
+    function syncConsent() {
+      var ok = !!form.elements.consent.checked;
+      submitBtn.disabled = !ok;
+      if (consentHint) consentHint.hidden = ok;
+    }
+    syncConsent();
     form.addEventListener('change', function (e) {
-      if (e.target.name === 'consent') setError('consent');
+      if (e.target.name === 'consent') { setError('consent'); syncConsent(); }
     });
 
     // Mantém o link do WhatsApp igual ao texto revisado

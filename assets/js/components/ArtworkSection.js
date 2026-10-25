@@ -53,7 +53,7 @@ window.Behling.ArtworkSection = (function () {
         '</header>' +
         (items.length
           ? '<div class="notebook notebook--' + (items.length >= 3 ? 'many' : items.length === 2 ? 'two' : 'one') + '">' + items.map(leaf).join('') + '</div>'
-          : '<div class="notebook notebook--many notebook--ph">' + [0, 1, 2].map(placeholderLeaf).join('') + '</div>') +
+          : '<div class="notebook notebook--many notebook--ph">' + [0, 1, 2, 3].map(placeholderLeaf).join('') + '</div>') +
       '</div>';
 
     root.addEventListener('click', function (e) {

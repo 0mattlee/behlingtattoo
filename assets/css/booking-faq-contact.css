@@ -225,3 +225,8 @@ select.input option { background: var(--black-2); color: var(--ivory); }
 .contact__region { display: inline-flex; align-items: center; gap: 12px; margin-top: clamp(28px, 3.5vw, 44px); font-family: var(--font-ceremonial); font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--beige); text-align: center; }
 .contact__region .orn { color: var(--ivory); opacity: 0.6; flex: none; }
 .footer__region { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+
+/* Botão de revisar: só habilita com a concordância marcada */
+.btn[disabled] { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.form__hint { margin-top: 10px; font-size: 0.84rem; color: var(--muted); text-align: center; }
+.form__hint[hidden] { display: none; }
