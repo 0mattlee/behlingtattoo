@@ -1,0 +1,145 @@
+/* ==========================================================================
+   UNIVERSO ARTÍSTICO e SOBRE
+   ========================================================================== */
+
+/* ---------- Universo: caderno de artista ---------- */
+.section--universe::before,
+.section--booking::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: min(520px, 60%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+
+.notebook { display: grid; gap: clamp(36px, 5vw, 64px) clamp(24px, 3vw, 44px); }
+.notebook--one { max-width: 420px; }
+@media (min-width: 640px) {
+  .notebook--two, .notebook--many { grid-template-columns: repeat(2, 1fr); }
+  .notebook--two { max-width: 820px; }
+}
+@media (min-width: 1024px) {
+  .notebook--many { grid-template-columns: repeat(3, 1fr); }
+  .notebook--many .leaf:nth-child(3n + 2) { margin-top: 56px; }
+}
+
+.leaf__open { display: block; width: 100%; cursor: zoom-in; }
+.leaf__mat {
+  display: block;
+  padding: clamp(10px, 1.4vw, 16px);
+  background: var(--coal);
+  border: 1px solid var(--line);
+  transition: border-color 0.4s var(--ease);
+}
+.leaf__open:hover .leaf__mat { border-color: var(--line-strong); }
+.leaf__mat img { width: 100%; height: auto; }
+.leaf__caption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-top: 14px; }
+.leaf__no { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; color: var(--ivory); min-width: 2.2ch; }
+.leaf__label { font-family: var(--font-ceremonial); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--beige); }
+.leaf__text { flex-basis: 100%; font-size: 0.92rem; color: var(--muted); }
+
+.notebook-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 36px 20px;
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.notebook-empty .orn { color: var(--ivory); opacity: 0.6; flex: none; }
+
+/* ---------- Sobre ---------- */
+.about__grid {
+  display: grid;
+  gap: clamp(48px, 7vw, 96px);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .about__grid { grid-template-columns: 0.8fr 1.1fr; }
+}
+
+.about__figure { position: relative; justify-self: center; width: min(100%, 380px); }
+.about__arch {
+  position: relative;
+  aspect-ratio: 533 / 795; /* proporção da foto: nada é cortado */
+  overflow: hidden;
+  border-radius: 999px 999px 0 0;
+  border: 1px solid var(--line-strong);
+  background: radial-gradient(circle at 50% 30%, var(--panel-hi), var(--black-2) 75%);
+}
+.about__arch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(var(--black-rgb), 0.55));
+  pointer-events: none;
+}
+.about__arch img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: contrast(1.02) brightness(0.95);
+}
+.about__figure::before {
+  content: '';
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border-radius: 999px 999px 0 0;
+  border: 1px solid var(--line);
+  z-index: -1;
+}
+.about__star { position: absolute; color: var(--ivory); opacity: 0.75; }
+.about__star--a { top: 8%; right: -22px; }
+.about__star--b { bottom: 14%; left: -26px; opacity: 0.5; }
+
+.about__copy .section__title { margin-bottom: clamp(24px, 3vw, 36px); }
+.about__p { font-size: 1.1rem; line-height: 1.85; max-width: 52ch; }
+.about__p + .about__p { margin-top: 1.2em; }
+.about__sign {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(28px, 4vw, 44px);
+  font-family: var(--font-ceremonial);
+  font-size: 0.82rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+.about__sign .orn { color: var(--beige); }
+
+@media (max-width: 899px) {
+  .about__figure { width: min(78vw, 340px); margin-bottom: 8px; }
+  .about__star--a { right: -10px; }
+  .about__star--b { left: -10px; }
+  .about__figure::before { inset: 10px -10px -10px 10px; }
+}
+
+/* ---------- Espaços reservados do Universo artístico ---------- */
+.leaf--ph { pointer-events: none; }
+.leaf__ph {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  position: relative;
+  color: var(--beige);
+  background: radial-gradient(circle at 50% 35%, var(--panel-hi), var(--black-2) 78%);
+}
+.leaf__ph::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid var(--line);
+}
+.leaf__ph svg { opacity: 0.45; }
+@media (max-width: 639px) {
+  .notebook--ph .leaf:nth-child(n + 2) { display: none; } /* no celular, só uma moldura */
+}

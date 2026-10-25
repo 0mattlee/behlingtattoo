@@ -1,0 +1,293 @@
+/* ==========================================================================
+   BASE — variáveis, reset, tipografia, botões, utilidades
+   ========================================================================== */
+
+:root {
+  /* Paleta restrita */
+  --black: #090909;
+  --black-2: #121110;
+  --coal: #24211F;
+  --ivory: #D6CFC0;
+  --beige: #AAA295;
+  --muted: #817B73;
+
+  /* Tema escuro (padrão). Os valores do tema claro estão mais abaixo. */
+  --ivory-rgb: 214, 207, 192;
+  --black-rgb: 9, 9, 9;
+  --backdrop-rgb: 5, 5, 5;
+  --line: rgba(var(--ivory-rgb), 0.16);
+  --line-strong: rgba(var(--ivory-rgb), 0.36);
+
+  --hover-ink: #fff;
+  --solid-hover: #E6E0D2;
+  --solid-active: #C9C2B2;
+  --err-text: #E7B9A8;
+  --err-line: #C98F7C;
+  --panel-hi: #1b1917;
+  color-scheme: dark;
+
+  --font-display: 'Cormorant Garamond', 'Cormorant', Garamond, 'Palatino Linotype', Georgia, serif;
+  --font-ceremonial: 'Cinzel', 'Trajan Pro', 'Palatino Linotype', Georgia, serif;
+  --font-text: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --gutter: clamp(20px, 5vw, 72px);
+  --maxw: 1240px;
+  --header-h: 68px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 0.6s;
+}
+
+/* ---------- Tema claro: "papel envelhecido e tinta preta" ----------
+   O tema escuro é o padrão da marca. Aqui só os valores mudam; as variáveis
+   --ivory/--black continuam sendo "cor de destaque" e "cor de fundo". */
+:root[data-theme='light'] {
+  --black: #ECE6D8;
+  --black-2: #E4DDCC;
+  --coal: #D8D0BD;
+  --ivory: #16130F;
+  --beige: #4B453B;
+  --muted: #6A6358;
+
+  --ivory-rgb: 22, 19, 15;
+  --black-rgb: 236, 230, 216;
+  --backdrop-rgb: 236, 230, 216;
+
+  --hover-ink: #000;
+  --solid-hover: #2B261F;
+  --solid-active: #3A342B;
+  --err-text: #8A3A26;
+  --err-line: #A5503A;
+  --panel-hi: #F1ECDF;
+  color-scheme: light;
+}
+:root[data-theme='light'] body::before { filter: invert(1); opacity: 0.05; }
+:root[data-theme='light'] .hero__glow { background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.55), transparent 66%); }
+:root[data-theme='light'] .section--contact::before { background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 62%); }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 8px);
+  background: var(--black);
+}
+html.is-locked { overflow: hidden; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--beige);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Textura de impressão quase imperceptível (estática, sem custo de animação) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.84  0 0 0 0 0.81  0 0 0 0 0.75  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+main, header, footer { position: relative; z-index: 1; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: var(--ivory);
+  text-decoration: none;
+  transition: color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+a:hover { color: var(--hover-ink); }
+
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+h1, h2, h3, h4, p, ul, ol, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--ivory);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection { background: var(--ivory); color: var(--black); }
+
+/* Utilidades */
+.container { width: 100%; max-width: calc(var(--maxw) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 10px; left: 10px;
+  z-index: 100;
+  padding: 12px 18px;
+  background: var(--ivory);
+  color: var(--black);
+  font-size: 0.875rem;
+  transform: translateY(-160%);
+  transition: transform 0.25s var(--ease);
+}
+.skip-link:focus { transform: translateY(0); color: var(--black); }
+
+.icon { flex: none; }
+
+/* Tipografia */
+.eyebrow {
+  font-family: var(--font-ceremonial);
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--beige);
+  font-weight: 400;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+  color: var(--ivory);
+  margin-top: 18px;
+}
+
+.section__sub {
+  font-size: 1.06rem;
+  color: var(--beige);
+  max-width: 46ch;
+}
+
+/* Seções e ritmo */
+.section {
+  position: relative;
+  padding-block: clamp(88px, 12vw, 168px);
+}
+.section--universe,
+.section--booking { background: var(--black-2); }
+
+.section__head { margin-bottom: clamp(44px, 6vw, 84px); }
+.section__head--center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.section__head--center .section__sub { margin-top: 18px; }
+.section__head--split {
+  display: grid;
+  gap: 22px 64px;
+  align-items: end;
+}
+@media (min-width: 900px) {
+  .section__head--split { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+/* Filete ornamental */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--ivory);
+  margin-top: 34px;
+  width: min(280px, 70%);
+}
+.divider__line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line-strong)); }
+.divider__line:last-child { background: linear-gradient(270deg, transparent, var(--line-strong)); }
+
+/* Botões */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 30px;
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  text-align: center;
+  line-height: 1.2;
+  overflow: hidden;
+  transition: color 0.35s var(--ease), border-color 0.35s var(--ease), background-color 0.35s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:hover { border-color: var(--ivory); color: var(--hover-ink); background: rgba(var(--ivory-rgb), 0.07); }
+.btn:active { background: rgba(var(--ivory-rgb), 0.14); }
+
+.btn--solid { background: var(--ivory); color: var(--black); border-color: var(--ivory); }
+.btn--solid:hover { background: var(--solid-hover); color: var(--black); border-color: var(--solid-hover); }
+.btn--solid:active { background: var(--solid-active); }
+
+.btn--small { min-height: 42px; padding: 0 20px; font-size: 0.74rem; }
+.btn--large { min-height: 58px; padding: 0 44px; font-size: 0.86rem; }
+
+.link-btn {
+  color: var(--beige);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+  min-height: 44px;
+  padding: 0 4px;
+}
+.link-btn:hover { color: var(--ivory); }
+
+/* Aparição ao rolar (só quando há JavaScript) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ---------- Animação de troca de tema ---------- */
+/* Círculo de revelação: o novo tema cresce por cima do antigo (ver theme.js). */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
+/* Alternativa sem View Transitions: fade suave das cores. */
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition: background-color 0.5s var(--ease), color 0.5s var(--ease), border-color 0.5s var(--ease), fill 0.5s var(--ease) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

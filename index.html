@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Behling Tattoo | Portfólio de Kim Behling</title>
+  <meta name="description" content="Sou Kim Behling, tatuadora. Aqui reúno minhas tatuagens realizadas, meus desenhos autorais e projetos artísticos da Behling Tattoo.">
+  <meta name="theme-color" content="#090909">
+  <meta name="color-scheme" content="dark light">
+  <!-- Aplica o tema salvo antes da pintura (evita piscar). Padrão: escuro. -->
+  <script>try{if(localStorage.getItem('behling-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#ECE6D8');}}catch(e){}</script>
+
+  <!-- Compartilhamento. Depois de publicar o site, troque os endereços abaixo pelo
+       endereço completo (ex.: https://seudominio.com/assets/images/og-image.jpg). -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Behling Tattoo">
+  <meta property="og:title" content="Behling Tattoo | Portfólio de Kim Behling">
+  <meta property="og:description" content="Sou Kim Behling, tatuadora. Aqui reúno minhas tatuagens realizadas, meus desenhos autorais e projetos artísticos da Behling Tattoo.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logotipo da Behling Tattoo em marfim sobre fundo preto">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+  <!-- Fontes: Cormorant Garamond (títulos), Cinzel (detalhes), Manrope (textos).
+       Se as fontes não carregarem, o site usa fontes do sistema com a mesma função. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/images/logo.png">
+  <link rel="preload" as="image" href="assets/images/kim.webp">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/header-hero.css">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/booking-faq-contact.css">
+  <link rel="stylesheet" href="assets/css/lightbox.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header id="site-header" class="header"></header>
+
+  <main id="conteudo">
+    <section id="inicio" class="hero" aria-label="Apresentação"></section>
+    <section id="portfolio" class="section section--portfolio"></section>
+    <section id="universo" class="section section--universe"></section>
+    <section id="sobre" class="section section--about"></section>
+    <section id="orcamento" class="section section--booking"></section>
+    <section id="faq" class="section section--faq"></section>
+    <section id="contato" class="section section--contact"></section>
+  </main>
+
+  <footer id="site-footer" class="footer"></footer>
+
+  <div id="lightbox-root"></div>
+
+  <noscript>
+    <p style="padding:2rem;text-align:center;color:#D6CFC0;background:#090909">
+      Behling Tattoo — Kim Behling. Para ver o portfólio, ative o JavaScript no seu navegador.
+    </p>
+  </noscript>
+
+  <!-- 1. Configuração e dados editáveis -->
+  <script src="assets/js/config/site-config.js"></script>
+  <script src="assets/js/data/works.js"></script>
+  <script src="assets/js/data/universe.js"></script>
+  <script src="assets/js/data/faq.js"></script>
+
+  <!-- 2. Bibliotecas internas -->
+  <script src="assets/js/lib/dom.js"></script>
+  <script src="assets/js/lib/theme.js"></script>
+  <script src="assets/js/lib/ornaments.js"></script>
+  <script src="assets/js/lib/portfolio-data.js"></script>
+  <script src="assets/js/lib/contact.js"></script>
+
+  <!-- 3. Componentes -->
+  <script src="assets/js/components/Header.js"></script>
+  <script src="assets/js/components/HeroSection.js"></script>
+  <script src="assets/js/components/Lightbox.js"></script>
+  <script src="assets/js/components/TattooCarousel.js"></script>
+  <script src="assets/js/components/PortfolioGallery.js"></script>
+  <script src="assets/js/components/ArtworkSection.js"></script>
+  <script src="assets/js/components/AboutSection.js"></script>
+  <script src="assets/js/components/WhatsAppContactButton.js"></script>
+  <script src="assets/js/components/BookingSection.js"></script>
+  <script src="assets/js/components/FAQSection.js"></script>
+  <script src="assets/js/components/ContactSection.js"></script>
+  <script src="assets/js/components/Footer.js"></script>
+
+  <!-- 4. Inicialização -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
